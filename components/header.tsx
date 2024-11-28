@@ -1,23 +1,29 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { SVGLinkedin } from "./icons";
 
-export default function Header() {
+export const Header = () => {
   return (
     <header className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          Marketplace
+          <SVGLinkedin /> Marketplace
         </Link>
         <nav>
           <ul className="flex space-x-4">
-            <li><Link href="/browse" className="hover:text-secondary">Browse</Link></li>
-            <li><Link href="/sell" className="hover:text-secondary">Sell</Link></li>
-            <li><Button asChild variant="secondary"><Link href="/login">Login</Link></Button></li>
-            <li><Button asChild variant="outline"><Link href="/register">Register</Link></Button></li>
+            <li>
+              <Button asChild variant="secondary">
+                <Link href="/login">Browse</Link>
+              </Button>
+            </li>
+            <li>
+              <Button asChild variant="secondary">
+                <Link href="/register">Sell</Link>
+              </Button>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
-  )
-}
-
+  );
+};
