@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import React from "react"
 
 export default function Home() {
   return (
-    <div className="text-center">
+    <div className="text-center flex flex-col flex-1">
       <h1 className="text-4xl font-bold mb-4 text-primary">
         Welcome to the Marketplace
       </h1>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { AsyncProvoder } from "./provider/query-provider";
+import React from "react"
 
 export const metadata: Metadata = {
   title: "Hono | nextjs",
@@ -15,9 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        {children} <Footer />
+      <body className="flex flex-col w-screen min-h-screen">
+        <AsyncProvoder>
+
+          <Header />
+          {children} <Footer />
+        </AsyncProvoder>
       </body>
     </html>
   );
