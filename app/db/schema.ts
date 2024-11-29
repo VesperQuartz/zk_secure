@@ -1,10 +1,10 @@
+import { sql } from 'drizzle-orm';
 import { sqliteTable, integer, text, primaryKey } from 'drizzle-orm/sqlite-core';
-import crypto from "crypto"
 
 export const users = sqliteTable('users', {
   id: text('id').primaryKey().$default(() => crypto.randomUUID()),
   username: text('username'),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 
@@ -18,6 +18,7 @@ export const listings = sqliteTable('listings', {
   price: integer('price'),
   currency: text('currency').default('USD'),
   status: text('status').default('active'),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
+export type User = typeof users.$inferSelect;

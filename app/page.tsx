@@ -1,8 +1,9 @@
+import { SellDialog } from "@/components/sell";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react"
 
-export default function Home() {
+export const Home = () => {
   return (
     <div className="text-center flex flex-col flex-1">
       <h1 className="text-4xl font-bold mb-4 text-primary">
@@ -15,10 +16,12 @@ export default function Home() {
         <Button asChild size="lg">
           <Link href="/browse">Browse Listings</Link>
         </Button>
-        <Button asChild size="lg" variant="outline">
-          <Link href="/sell">Create a Listing</Link>
-        </Button>
+        <SellDialog>
+          Create a Listing
+        </SellDialog>
       </div>
     </div>
   );
 }
+
+export default Home;
