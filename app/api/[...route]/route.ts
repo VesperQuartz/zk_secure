@@ -145,23 +145,16 @@ app.post(
 );
 
 app.get("/products", async (c) => {
-  const token = getCookie(c, "session");
-  if (token) {
-    const [pError, product] = await to(
-      db
-        .select({ users, products })
-        .from(products)
-        .innerJoin(users, eq(products.sellerId, users.id)),
-    );
-    if (pError) {
-      return c.json([]);
-    }
-    return c.json(product);
-  }
-  return c.json(
-    { message: "You are not authorized to perform this action" },
-    401,
+  const [pError, product] = await to(
+    db
+      .select({ users, products })
+      .from(products)
+      .innerJoin(users, eq(products.sellerId, users.id)),
   );
+  if (pError) {
+    return c.json([]);
+  }
+  return c.json(product);
 });
 
 app.get("/auth", async (c) => {
