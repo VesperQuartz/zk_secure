@@ -65,14 +65,14 @@ const SignUpPage = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     generate.mutate(
       {
-        schemaId: "18c49589fcc94b31ba9f8ae79224e2c8",
+        schemaId: process.env.NEXT_PUBLIC_SCHEMA_ID1!,
       },
       {
         onSuccess: (data) => {
           verify.mutate(
             {
               res: data,
-              schemaId: "18c49589fcc94b31ba9f8ae79224e2c8",
+              schemaId: process.env.NEXT_PUBLIC_SCHEMA_ID1!,
             },
             {
               onSuccess: (data) => {

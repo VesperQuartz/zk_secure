@@ -108,7 +108,7 @@ export default function SellDigitalGoodsPage() {
       <Button
         onClick={() =>
           generate.mutate({
-            schemaId: "08022af28d094e7d9e9f3bd53874de45",
+            schemaId: process.env.NEXT_PUBLIC_SCHEMA_ID2!,
           })
         }
       >
