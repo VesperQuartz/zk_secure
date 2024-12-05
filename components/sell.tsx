@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { Textarea } from '@/components/ui/textarea'
-import React from "react"
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
+import { Textarea } from "@/components/ui/textarea";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -14,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -22,10 +22,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import clsx from "clsx"
-import { useUserStore } from "@/app/store"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import clsx from "clsx";
+import { useUserStore } from "@/app/(store)/store";
 
 const formSchema = z.object({
   profileUrl: z.string().url({
@@ -40,11 +40,11 @@ const formSchema = z.object({
   headline: z.string().min(10, {
     message: "Headline must be at least 10 characters.",
   }),
-})
+});
 
 export const SellDialog = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = React.useState(false)
-  const user = useUserStore(state => state.user);
+  const [open, setOpen] = React.useState(false);
+  const user = useUserStore((state) => state.user);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,20 +52,23 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
       accountAge: 4,
       price: 100,
     },
-  })
+  });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-    setOpen(false)
-  }
+    console.log(values);
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" disabled={user === undefined
-        } className={clsx("", {
-          "cursor-not-allowed": user === undefined
-        })}>
+        <Button
+          variant="secondary"
+          disabled={user === undefined}
+          className={clsx("", {
+            "cursor-not-allowed": user === undefined,
+          })}
+        >
           {children}
         </Button>
       </DialogTrigger>
@@ -73,7 +76,8 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
         <DialogHeader>
           <DialogTitle>Create a New Listing</DialogTitle>
           <DialogDescription>
-            Enter the details of your professional account to create a new listing.
+            Enter the details of your professional account to create a new
+            listing.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -85,7 +89,10 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormLabel>Profile URL</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://example.com/profile" {...field} />
+                    <Input
+                      placeholder="https://example.com/profile"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,7 +105,10 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormLabel>Headline</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Enter your professional headline" {...field} />
+                    <Textarea
+                      placeholder="Enter your professional headline"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -111,7 +121,11 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormLabel>Account Age</FormLabel>
                   <FormControl>
-                    <Input type="number" {...field} onChange={e => field.onChange(+e.target.value)} />
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => field.onChange(+e.target.value)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -124,7 +138,11 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input type="number" {...field} onChange={e => field.onChange(+e.target.value)} />
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => field.onChange(+e.target.value)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -137,5 +155,5 @@ export const SellDialog = ({ children }: { children: React.ReactNode }) => {
         </Form>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
