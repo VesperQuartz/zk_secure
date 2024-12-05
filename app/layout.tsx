@@ -1,6 +1,6 @@
 import "./globals.css";
 import { AsyncProvider } from "./provider/query-provider";
-import React from "react";
+import React, { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import NProgressProviders from "./provider/loader-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -16,7 +16,9 @@ export default function RootLayout({
         <main className="flex-1">
           <AsyncProvider>
             <NuqsAdapter>
-              <NProgressProviders>{children}</NProgressProviders>
+              <NProgressProviders>
+                <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+              </NProgressProviders>
             </NuqsAdapter>
           </AsyncProvider>
         </main>

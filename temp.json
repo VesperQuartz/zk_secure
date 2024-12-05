@@ -1,0 +1,31 @@
+{
+  "issuer": "Reddit",
+  "desc": "Schema",
+  "website": "https://www.reddit.com/message/messages",
+  "breakWall": true,
+  "APIs": [
+    {
+      "host": "gql-fed.reddit.com",
+      "intercept": {
+        "url": "/",
+        "method": "POST"
+      },
+      "assert": [
+        {
+          "key": "data|redditorsInfoByIds|4|karma|total",
+          "value": "5000",
+          "operation": ">"
+        }
+      ],
+      "nullifier": "data|redditorsInfoByIds|4|displayName"
+    }
+  ],
+  "HRCondition": [
+    "Karma > 5000"
+  ],
+  "tips": {
+    "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+  },
+  "category": "Social",
+  "id": "0x08022af28d094e7d9e9f3bd53874de45"
+}
