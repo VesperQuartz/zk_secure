@@ -80,6 +80,9 @@ importers:
       drizzle-orm:
         specifier: ^0.36.4
         version: 0.36.4(@libsql/client@0.14.0)(@types/react@18.0.26)(react@18.2.0)
+      drizzle-seed:
+        specifier: ^0.1.2
+        version: 0.1.2(drizzle-orm@0.36.4(@libsql/client@0.14.0)(@types/react@18.0.26)(react@18.2.0))
       hono:
         specifier: ^4.6.12
         version: 4.6.12
@@ -1849,6 +1852,14 @@ packages:
       sqlite3:
         optional: true
 
+  drizzle-seed@0.1.2:
+    resolution: {integrity: sha512-F7+1tK/f5SHXK75ISH1zKUZWslW18dr9gbYB9tQHx7t5Wm82481OE5HGKFIjWuGV1VS0eFVr7+uXl8PFwPJjPA==}
+    peerDependencies:
+      drizzle-orm: '>=0.36.4'
+    peerDependenciesMeta:
+      drizzle-orm:
+        optional: true
+
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
@@ -2643,6 +2654,9 @@ packages:
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+
+  pure-rand@6.1.0:
+    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -4554,6 +4568,12 @@ snapshots:
       '@types/react': 18.0.26
       react: 18.2.0
 
+  drizzle-seed@0.1.2(drizzle-orm@0.36.4(@libsql/client@0.14.0)(@types/react@18.0.26)(react@18.2.0)):
+    dependencies:
+      pure-rand: 6.1.0
+    optionalDependencies:
+      drizzle-orm: 0.36.4(@libsql/client@0.14.0)(@types/react@18.0.26)(react@18.2.0)
+
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.5.67: {}
@@ -5474,6 +5494,8 @@ snapshots:
   proxy-from-env@1.1.0: {}
 
   punycode@2.3.1: {}
+
+  pure-rand@6.1.0: {}
 
   queue-microtask@1.2.3: {}
 

@@ -106,6 +106,7 @@ export default function SellDigitalGoodsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <Button
+        className="hidden"
         onClick={() =>
           generate.mutate({
             schemaId: process.env.NEXT_PUBLIC_SCHEMA_ID2!,

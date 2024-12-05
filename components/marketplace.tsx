@@ -134,6 +134,10 @@ export const Marketplace = () => {
                             ${product.products.price}
                           </span>
                         </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span>by</span>
+                          <span className="font-medium">{product.users.username}</span>
+                        </div>
                         <p className="text-muted-foreground line-clamp-3">
                           {product.products.description}
                         </p>

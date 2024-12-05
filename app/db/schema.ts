@@ -26,18 +26,19 @@ export const products = sqliteTable("products", {
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
 
-export const reviews = sqliteTable("reviews", {
-  id: text("id")
-    .primaryKey()
-    .$default(() => crypto.randomUUID()),
-  productId: text("product_id")
-    .references(() => products.id)
-    .notNull(), // Foreign key to products table
-  rating: integer("rating").notNull(), // Rating value (1-5)
-  comment: text("comment").notNull(), // Comment on the product
-  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`), // Timestamp for review creation
-});
-
+//
+// export const reviews = sqliteTable("reviews", {
+//   id: text("id")
+//     .primaryKey()
+//     .$default(() => crypto.randomUUID()),
+//   productId: text("product_id")
+//     .references(() => products.id)
+//     .notNull(), // Foreign key to products table
+//   rating: integer("rating").notNull(), // Rating value (1-5)
+//   comment: text("comment").notNull(), // Comment on the product
+//   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`), // Timestamp for review creation
+// });
+//
 export const sessionTable = sqliteTable("session", {
   id: text("id").primaryKey(),
   userId: text("user_id")
