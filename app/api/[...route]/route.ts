@@ -8,7 +8,7 @@ import { getCookie, setCookie } from "hono/cookie";
 import { handle } from "hono/vercel";
 import z from "zod";
 import { logger } from "hono/logger";
-import argon2 from "argon2";
+import argon2 from "@node-rs/argon2";
 import {
   createSession,
   generateSessionToken,
