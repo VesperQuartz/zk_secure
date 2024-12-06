@@ -3,6 +3,7 @@ import {
   auth,
   createAccount,
   getAllProduct,
+  logout,
   signIn,
 } from "@/app/services/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -63,5 +64,12 @@ export const useAuth = () => {
   return useQuery({
     queryKey: ["whoami"],
     queryFn: auth,
+  });
+};
+
+export const useLogout = () => {
+  return useMutation({
+    mutationKey: ["logout"],
+    mutationFn: (payload: any) => logout(payload),
   });
 };

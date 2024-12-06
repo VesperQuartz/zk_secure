@@ -12,6 +12,7 @@ import argon2 from "@node-rs/argon2";
 import {
   createSession,
   generateSessionToken,
+  invalidateSession,
   validateSessionToken,
 } from "@/lib/lucia";
 
@@ -166,5 +167,16 @@ app.get("/auth", async (c) => {
   return c.json({ message: "You are not authorized" }, 401);
 });
 
+app.delete("/auth", async (c) => {
+  const token = getCookie(c, "session");
+  if (token) {
+    const { session } = await validateSessionToken(token!);
+    await invalidateSession(session!.id);
+    return c.status(205);
+  }
+  return c.json({ message: "You have no session" }, 200);
+});
+
 export const GET = handle(app);
 export const POST = handle(app);
+export const DELETE = handle(app);

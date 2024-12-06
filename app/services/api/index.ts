@@ -91,3 +91,14 @@ export const auth = async () => {
   }
   return auth;
 };
+
+export const logout = async (payload: unknown) => {
+  const [error, auth] = await to(
+    ky.delete("/api/auth", { json: { payload } }).json(),
+  );
+  if (error instanceof HTTPError) {
+    const e = await error.response.json();
+    throw new Error(e.message);
+  }
+  return auth;
+};

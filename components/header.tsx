@@ -4,18 +4,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LogOut, Search } from "lucide-react";
-import { useAuth } from "@/app/hooks/api";
+import { useAuth, useLogout } from "@/app/hooks/api";
 import { match } from "ts-pattern";
 import { Skeleton } from "./ui/skeleton";
 import { useQueryState } from "nuqs";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Header = () => {
   const user = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
   const [search, setSearch] = useQueryState("search", {
     defaultValue: "",
   });
+  const logout = useLogout();
 
   return (
     <header className="bg-background/80 backdrop-blur-sm border-b border-border/40 sticky top-0 z-50">
@@ -64,10 +66,18 @@ export const Header = () => {
                       size="icon"
                       className="rounded-full hover:bg-accent"
                       asChild
+                      onClick={() =>
+                        logout.mutate(
+                          {},
+                          {
+                            onSuccess: () => {
+                              router.push("/signin");
+                            },
+                          },
+                        )
+                      }
                     >
-                      <Link href="/signin">
-                        <LogOut className="h-5 w-5" />
-                      </Link>
+                      <LogOut className="h-5 w-5" />
                     </Button>
                   </div>
                 )),
