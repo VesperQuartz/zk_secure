@@ -64,7 +64,7 @@ export const Header = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="rounded-full hover:bg-accent"
+                      className="rounded-full hover:bg-accent cursor-pointer"
                       asChild
                       onClick={() =>
                         logout.mutate(

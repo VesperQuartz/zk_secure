@@ -171,8 +171,13 @@ app.delete("/auth", async (c) => {
   const token = getCookie(c, "session");
   if (token) {
     const { session } = await validateSessionToken(token!);
-    await invalidateSession(session!.id);
-    return c.status(205);
+    console.log(session, "session");
+    const [error] = await to(invalidateSession(session!.id));
+    if (error) {
+      console.log(error);
+      return c.json({ message: "seveer error" }, 500);
+    }
+    return c.json({ message: "delete was a success" }, 200);
   }
   return c.json({ message: "You have no session" }, 200);
 });
